@@ -1,0 +1,43 @@
+<!doctype html>
+<meta charset="utf-8">
+<link rel="stylesheet" href="/assets/main.css">
+<title>Административная часть / Школы</title>
+
+<nav>
+  <a href="#">Школы</a>
+  <a href="#">Аудитории</a>
+  <a href="#">Расписания</a>
+  <a href="#">Преподаватели</a>
+</nav>
+
+<h1>Школы</h1>
+
+<div class="manager">
+  <button class="manager__new-entity">Создать</button>
+  <button class="manager__save-entities">Сохранить</button>
+
+  <table class="manager__dataset">
+    <thead>
+      <tr>
+        <th>Название</th>
+        <th>Короткое название</th>
+        <th>Ссылка</th>
+        <th>Действия</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <template class="manager__entity-row">
+    <tr>
+      <td><input type="text" data-key="name"></td>
+      <td><input type="text" data-key="short_name"></td>
+      <td><input type="text" data-key="link"></td>
+      <td><button class="manager__delete-entity">Удалить</button></td>
+    </tr>
+  </template>
+</div>
+
+<script src="/assets/schedule.lib.js"></script>
+<script src="/assets/manager.js"></script>
+<script src="/assets/schools.js"></script>

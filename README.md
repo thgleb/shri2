@@ -16,7 +16,7 @@ Each lecture has its name and a teacher's name. Each school has a name and quant
 - viewing the schedule of lectures in the classroom in a specified date range
 - inputting and editing of data about the lectures
 - inputting and editing of data about schools
-- inputting and editing of data about audiences
+- inputting and editing of data about rooms
 
 ## Correctness and coherence of data
 
@@ -28,4 +28,4 @@ Each lecture has its name and a teacher's name. Each school has a name and quant
 
 - serialization / deserialization in different data formats
 - permanent storage of data anywhere
-- CLI for maintaining the data
+- web interface for maintaining the data

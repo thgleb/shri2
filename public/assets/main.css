@@ -1,0 +1,21 @@
+.manager__dataset {
+  width: 100%;
+  border: 1px solid #000;
+  margin-top: 20px;
+}
+.manager__dataset td,
+.manager__dataset th {
+  padding: 10px;
+  border: 1px solid #000;
+}
+.manager__dataset input {
+  width: 100%;
+  height: 30px;
+  padding: 0 5px;
+  box-sizing: border-box;
+  background: transparent;
+  border: 1px solid #ccc;
+}
+.manager__dataset [modified] {
+  background: #f2f2f2;
+}

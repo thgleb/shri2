@@ -55,7 +55,7 @@ func CreateScheme() (err error) {
     `CREATE TABLE rooms (
       id INTEGER PRIMARY KEY,
       name varchar(100) NOT NULL,
-      сapacity smallint(5) NOT NULL,
+      stud_capacity smallint(5) NOT NULL,
       location text NOT NULL
     )`,
 

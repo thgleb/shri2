@@ -4,13 +4,13 @@
 <title>Административная часть / Школы</title>
 
 <nav>
-  <a href="index.html" class="active">Школы</a>
-  <a href="rooms.html">Аудитории</a>
+  <a href="index.html">Школы</a>
+  <a href="rooms.html" class="active">Аудитории</a>
   <a href="schedules.html">Расписания</a>
   <a href="teachers.html">Преподаватели</a>
 </nav>
 
-<h1>Школы</h1>
+<h1>Аудитории</h1>
 
 <div class="manager">
   <button class="manager__new-entity">Создать</button>
@@ -20,8 +20,8 @@
     <thead>
       <tr>
         <th>Название</th>
-        <th>Короткое название</th>
-        <th>Ссылка</th>
+        <th>Вместительность</th>
+        <th>Местоположение</th>
         <th>Действия</th>
       </tr>
     </thead>
@@ -31,8 +31,8 @@
   <template class="manager__entity-row">
     <tr>
       <td><input type="text" data-key="name"></td>
-      <td><input type="text" data-key="short_name"></td>
-      <td><input type="text" data-key="link"></td>
+      <td><input type="number" data-key="stud_capacity"></td>
+      <td><input type="text" data-key="location"></td>
       <td><button class="manager__delete-entity">Удалить</button></td>
     </tr>
   </template>
@@ -40,4 +40,4 @@
 
 <script src="/assets/schedule.lib.js"></script>
 <script src="/assets/manager.js"></script>
-<script src="/assets/schools.js"></script>
+<script src="/assets/rooms.js"></script>

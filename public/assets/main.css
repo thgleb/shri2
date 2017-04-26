@@ -1,3 +1,9 @@
+a {
+  color: blue;
+}
+a.active {
+  color: brown;
+}
 .manager__dataset {
   width: 100%;
   border: 1px solid #000;

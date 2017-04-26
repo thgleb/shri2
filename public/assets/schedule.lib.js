@@ -48,4 +48,26 @@ class Schools {
       xhr.send("data=" + JSON.stringify(data));
     });
   }
+
+  /**
+   * It deletes a school
+   */
+  static delete(id) {
+    return new Promise((resolve, reject) => {
+      let xhr = new XMLHttpRequest();
+
+      xhr.addEventListener("load", e => {
+        let resp = JSON.parse(xhr.responseText);
+
+        if (resp.error) {
+          return reject(resp.error);
+        }
+
+        resolve();
+      });
+
+      xhr.open("delete", "/api/schools/" + id, true);
+      xhr.send();
+    });
+  }
 }

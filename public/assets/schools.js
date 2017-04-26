@@ -17,22 +17,12 @@ Schools.getArray()
           });
       },
       onDelete(id, row) {
-        let xhr = new XMLHttpRequest();
-
-        xhr.addEventListener("load", e => {
-          let resp = JSON.parse(xhr.responseText);
-
-          if (resp.error) {
+        Schools.delete(id)
+          .then(() => row.parentNode.removeChild(row))
+          .catch(errors => {
             alert("Не удалось удалить.");
             console.log(resp.errors);
-            return;
-          }
-
-          row.parentNode.removeChild(row);
-        });
-
-        xhr.open("delete", "/api/schools/" + id, true);
-        xhr.send();
+          });
       }
     });
   });

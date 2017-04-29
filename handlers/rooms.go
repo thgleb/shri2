@@ -16,7 +16,7 @@ func GetRooms(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
     return
   }
 
-  m, _ := json.Marshal(map[string]interface{}{"rooms": rooms})
+  m, _ := json.Marshal(map[string]interface{}{"data": rooms})
   w.Write([]byte(m))
 }
 

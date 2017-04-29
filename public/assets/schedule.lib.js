@@ -1,9 +1,13 @@
-class Schools {
+class RestObject {
+  constructor() {
+    this.API_LINK = "/api/objects"; // must be changed
+  }
+
   /**
-   * It returns a list of schools.
+   * It returns a list of objects.
    * @return Array
    */
-  static getArray() {
+  getArray() {
     return new Promise((resolve, reject) => {
       let xhr = new XMLHttpRequest();
 
@@ -11,25 +15,21 @@ class Schools {
         let resp = JSON.parse(xhr.responseText);
 
         if (xhr.status === 200) {
-          return resolve(resp.schools || []);
+          return resolve(resp.data || []);
         }
 
         reject(xhr);
       });
 
-      xhr.open("get", "/api/schools", true);
+      xhr.open("get", this.API_LINK, true);
       xhr.send();
     });
   }
 
   /**
-   * It saves the schools
+   * It saves the objects
    */
-  static save(data) {
-    data.map(v => {
-      v.id = parseInt(v.id)
-    });
-
+  save(data) {
     return new Promise((resolve, reject) => {
       let xhr = new XMLHttpRequest();
 
@@ -43,16 +43,16 @@ class Schools {
         resolve();
       });
 
-      xhr.open("POST", "/api/schools", true);
+      xhr.open("POST", this.API_LINK, true);
       xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
       xhr.send("data=" + JSON.stringify(data));
     });
   }
 
   /**
-   * It deletes a school
+   * It deletes an object
    */
-  static delete(id) {
+  delete(id) {
     return new Promise((resolve, reject) => {
       let xhr = new XMLHttpRequest();
 
@@ -66,83 +66,39 @@ class Schools {
         resolve();
       });
 
-      xhr.open("delete", "/api/schools/" + id, true);
+      xhr.open("delete", this.API_LINK + "/" + id, true);
       xhr.send();
     });
   }
 }
 
-class Rooms {
-  /**
-   * It returns a list of classrooms.
-   * @return Array
-   */
-  static getArray() {
-    return new Promise((resolve, reject) => {
-      let xhr = new XMLHttpRequest();
-
-      xhr.addEventListener("load", e => {
-        let resp = JSON.parse(xhr.responseText);
-
-        if (xhr.status === 200) {
-          return resolve(resp.rooms || []);
-        }
-
-        reject(xhr);
-      });
-
-      xhr.open("get", "/api/rooms", true);
-      xhr.send();
-    });
+class Schools extends RestObject {
+  constructor() {
+    super();
+    this.API_LINK = "/api/schools";
   }
 
-  /**
-   * It saves the classrooms
-   */
-  static save(data) {
+  save(data) {
     data.map(v => {
-      v.id = parseInt(v.id)
-      v.stud_capacity = parseInt(v.stud_capacity)
+      v.id = parseInt(v.id);
     });
 
-    return new Promise((resolve, reject) => {
-      let xhr = new XMLHttpRequest();
+    return super.save(data);
+  }
+}
 
-      xhr.addEventListener("load", e => {
-        let resp = JSON.parse(xhr.responseText);
-
-        if (resp.errors && resp.errors.length > 0) {
-          return reject(resp.errors);
-        }
-
-        resolve();
-      });
-
-      xhr.open("POST", "/api/rooms", true);
-      xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-      xhr.send("data=" + JSON.stringify(data));
-    });
+class Rooms extends RestObject {
+  constructor() {
+    super();
+    this.API_LINK = "/api/rooms";
   }
 
-  /**
-   * It deletes a classroom
-   */
-  static delete(id) {
-    return new Promise((resolve, reject) => {
-      let xhr = new XMLHttpRequest();
-
-      xhr.addEventListener("load", e => {
-        let resp = JSON.parse(xhr.responseText);
-
-        if (resp.error) {
-          return reject(resp.error);
-        }
-
-        resolve();
-      });
-
-      xhr.open("delete", "/api/rooms/" + id, true);
-      xhr.send();
+  save(data) {
+    data.map(v => {
+      v.id = parseInt(v.id) || 0;
+      v.stud_capacity = parseInt(v.stud_capacity);
     });
+
+    return super.save(data);
   }
 }

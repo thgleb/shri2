@@ -1,15 +1,17 @@
 let m = document.querySelector(".manager");
 let $;
 
-Rooms.getArray()
+let r = new Rooms();
+
+r.getArray()
   .then(list => {
     $ = manager(document.querySelector(".manager"), list, {
       onSave(data, modifiedEntites) {
         if (data.length == 0) return;
 
-        Rooms.save(data)
+        r.save(data)
           .then(() => {
-            Rooms.getArray().then(list => $.update(list));
+            r.getArray().then(list => $.update(list));
           })
           .catch(errors => {
             alert("Не удалось обновить");
@@ -17,7 +19,7 @@ Rooms.getArray()
           });
       },
       onDelete(id, row) {
-        Rooms.delete(id)
+        r.delete(id)
           .then(() => row.parentNode.removeChild(row))
           .catch(errors => {
             alert("Не удалось удалить.");

@@ -16,7 +16,7 @@ func GetSchools(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
     return
   }
 
-  m, _ := json.Marshal(map[string]interface{}{"schools": schools})
+  m, _ := json.Marshal(map[string]interface{}{"data": schools})
   w.Write([]byte(m))
 }
 

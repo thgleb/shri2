@@ -1,3 +1,11 @@
+/**
+ * It maintains working process with data tables.
+ *
+ * @param HTMLElement container
+ * @param Array       data
+ * @param Object      config
+ *
+ */
 function manager(container, data, config) {
   let dataSet = container.querySelector(".manager__dataset tbody"),
     newEntity = container.querySelector(".manager__new-entity"),
@@ -85,4 +93,40 @@ function manager(container, data, config) {
 
   insert();
   return this;
+}
+
+/**
+ * It simplifies work with the manager.
+ *
+ * @param HTMLElement container
+ * @param Object      obj        One of the instances of ScheduleLib.
+ */
+function managerWrapper(container, obj) {
+  let $;
+
+  function onData(list) {
+    $ = manager(container, list, { onSave, onDelete });
+  }
+
+  function onSave(data, modifiedEntites) {
+    if (data.length == 0) return;
+
+    obj.save(data)
+      .then(() => obj.getArray().then(list => $.update(list)))
+      .catch(errors => {
+        alert("Не удалось обновить");
+        console.log(errors);
+      });
+  }
+
+  function onDelete(id, row) {
+    obj.delete(id)
+      .then(() => row.parentNode.removeChild(row))
+      .catch(errors => {
+        alert("Не удалось удалить.");
+        console.log(errors);
+      });
+  }
+
+  obj.getArray().then(onData);
 }

@@ -45,6 +45,10 @@ func main() {
   r.POST("/api/rooms", handlers.SaveRooms)
   r.DELETE("/api/rooms/:id", handlers.DeleteRoom)
 
+  r.GET("/api/teachers", handlers.GetTeachers)
+  r.POST("/api/teachers", handlers.SaveTeachers)
+  r.DELETE("/api/teachers/:id", handlers.DeleteTeacher)
+
   r.NotFound = http.FileServer(http.Dir("public"))
 
   log.Println("Serving at http://localhost:8081/")

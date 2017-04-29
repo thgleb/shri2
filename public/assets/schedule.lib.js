@@ -102,3 +102,18 @@ class Rooms extends RestObject {
     return super.save(data);
   }
 }
+
+class Teachers extends RestObject {
+  constructor() {
+    super();
+    this.API_LINK = "/api/teachers";
+  }
+
+  save(data) {
+    data.map(v => {
+      v.id = parseInt(v.id) || 0;
+    });
+
+    return super.save(data);
+  }
+}
